@@ -62,3 +62,9 @@ Additionally, the model struggled to capture sharp spikes during the COVID-19 pe
 
 * Limited dataset size, especially for pre- and post-COVID periods.
 
+## View Notebook
+
+You can view the full analysis notebook on NBViewer here:  
+🔗 [Unemployment Analysis – Task 2 (NBViewer)](https://nbviewer.org/github/aminahol/OIBSIP_unemployment-rates_task_2/blob/700c1584f8fcd738a3e322088c221a3ad02646f7/Unemployment_%20Analysis%20_%20Task2.ipynb)
+
+
