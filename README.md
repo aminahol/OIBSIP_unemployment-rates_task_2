@@ -1,70 +1,75 @@
-# Unemployment Forecasting in India During COVID19
-Oasis InfoByte Internship | Task 2
+# Unemployment Rate Forecasting in India During COVID-19
 
-## Overview
+A time series analysis project investigating the impact of COVID-19 pandemic on employment patterns across Indian states and regions, with forecasting using Facebook Prophet algorithm.
 
-This project analyzes and forecasts the unemployment rate in India, focusing on the impact of the COVID19 pandemic. Using time series modeling and exploratory data analysis (EDA), it highlights how lockdown measures and socioeconomic shifts contributed to employment fluctuations. The Prophet library was used for forecasting, enhanced with a custom `Post_covid` regressor and changepoints to better capture the pandemic's disruptive effects.
+**[View Interactive Notebook](https://nbviewer.org/github/aminahol/OIBSIP_unemployment-rates_task_2/blob/fb74e27f62e08866c5cde1c358a92dd1eedb575d/Unemployment_%20Analysis%20_%20Task2.ipynb)**
 
 ## Objectives
 
-* Understand how COVID19 affected unemployment trends in India
-* Measure changes in unemployment before and after lockdown periods
-* Build a forecasting model that accounts for real-world disruptions
-* Evaluate the accuracy of short- vs long-term forecasts
+- Analyze the impact of COVID-19 lockdowns on employment trends across India
+- Quantify the magnitude and temporal progression of unemployment during pandemic peak
+- Identify regional patterns in unemployment rates before and after COVID-19
+- Develop time series forecasting model to predict future unemployment trends
 
-## Process Summary
+## Dataset
 
-* Cleaned and merged national and regional unemployment datasets into a monthly time series
-* Introduced a binary `Post_covid` variable to reflect structural shifts caused by lockdown
-* Performed exploratory data analysis to identify temporal unemployment trends
-* Built and fine-tuned a Prophet model with changepoints and custom regressors
-* Evaluated forecasting performance using cross-validation and key error metrics
+The analysis combines two unemployment datasets covering Indian states from May 2019 to June 2020:
+- **728 samples** across multiple states and regions after removing duplicates
+- **Key features**: Unemployment Rate (%), Employed population, Labour Participation Rate (%)
+- **Time periods**: Pre-COVID (May 2019 - March 2020) and Post-COVID (April 2020 - June 2020)
+- **Geographic coverage**: All major Indian states grouped by regions (North, South, East, West)
+
+## Methodology
+
+### Data Preparation
+- Merged two datasets to create comprehensive unemployment database
+- Created binary COVID impact indicator using April 1, 2020 as threshold
+- Calculated employment growth rates and categorized unemployment levels
+- Cleaned data by removing duplicates and standardizing column names
+
+### Exploratory Analysis
+- **Temporal trends**: Line graphs showing unemployment evolution over time
+- **Impact comparison**: Boxplots comparing pre and post COVID unemployment rates
+- **Regional analysis**: Bar charts showing state and region-wise unemployment patterns
+- **Employment dynamics**: Growth rate analysis across different time periods
+
+### Time Series Forecasting
+Used Facebook Prophet algorithm for unemployment rate prediction:
+- **Changepoint identification**: Selected April 30, May 31, and June 30, 2020 as changepoints based on observed trend breaks in the line graph
+- **External regressor**: Added Post-COVID binary variable to capture pandemic impact
+- **Model validation**: Applied cross-validation with 180-day initial training period
+
+## Results
+
+### COVID-19 Impact
+- **Unemployment doubled**: Average rate increased from 9.5% (pre-COVID) to 20.3% (post-COVID)
+- **Sharp spike observed**: Peak unemployment occurred during April-May 2020 lockdown
+- **Labour force reduction**: Participation rate dropped from 43.9% to 38.1%
+- **Recovery pattern**: Employment growth resumed in most states post-lockdown
+
+### Regional Findings
+- **Universal impact**: All regions experienced significant unemployment increases
+- **State variations**: Different recovery patterns observed across states
+- **North region**: Showed highest average unemployment rates
+- **Employment paradox**: Rising employment growth despite higher unemployment due to shrinking labour force
+
+### Forecasting Performance
+- **Model accuracy**: MAE of 7.03%, RMSE of 9.67%
+- **Short-term reliability**: Best performance for 28-29 day forecasts
+- **Limitation**: Model struggled with extreme volatility during acute pandemic phase
+- **Trend capture**: Successfully identified overall recovery trajectory
 
 ## Key Insights
 
-**Unemployment Spike**: The unemployment rate surged sharply in April 2020, coinciding with the first COVID19 lockdown. This marked the most significant disruption in the time series.
-
-**Peak and Dip**: The rate peaked in May 2020, then began to decline around June, with a more noticeable drop by September. This suggests the job market was hit hard but started recovering within a few months.
-
-**Sustained High Levels**: Even months after restrictions eased, unemployment did not return to pre-pandemic levels. This indicates lasting economic disruption and an incomplete recovery.
-
-**Participation Drop**: Labour force participation declined from 43.9 percent before COVID to 38.1 percent after. Although job growth resumed, fewer people remained in the workforce, reflecting a shrinking labour base.
-
-**National Impact**: The rise in unemployment post-COVID affected nearly all regions, showing that the economic shock was widespread.
-
-These findings justified the use of changepoints and the `Post_covid` regressor in the forecasting model to capture the structural break in the data.
-
-## Forecasting and Model Performance
-
-We used Facebook Prophet to forecast unemployment, taking advantage of its ability to handle seasonality, changepoints, and custom regressors.
-
-### Model Accuracy Metrics
-
-* Mean Absolute Error (MAE): 7.03 – On average, predictions deviated from actual values by 7 percentage points
-* Root Mean Squared Error (RMSE): 9.67 – Indicates larger errors have more impact, showing moderate volatility in forecasts
-
-### Cross-Validation Findings
-
-* Forecasts for short horizons around 28–29 days were the most accurate, with MAE between 6.1 and 9.4 and RMSE as low as 7.7
-* Forecasts for longer horizons (e.g., 90 days) had higher errors, with MAE reaching 11.4 and RMSE rising to 16.57
-
-## Tools and Libraries Used
-
-Python (Pandas, Seaborn, Matplotlib, Prophet)
-Jupyter Notebook
-nbviewer.org for notebook presentation
+1. **Systematic Impact**: COVID-19 affected employment across all Indian states, not just specific regions
+2. **Sharp Recovery**: Despite severe initial impact, employment showed signs of recovery by June 2020
+3. **Changepoint Importance**: The line graph clearly revealed three critical transition periods that improved forecast accuracy
+4. **Labour Market Dynamics**: Rising employment alongside higher unemployment indicates complex workforce participation changes
 
 ## Conclusion
 
-Overall, the model demonstrates reasonable accuracy for short-term unemployment rate forecasts, with lower errors at 28–29 day horizons. However, as the forecast horizon increases, the model’s performance declines, with higher MAE and RMSE values indicating reduced reliability for long-term predictions.
+The analysis successfully quantified COVID-19's severe impact on Indian employment markets. The Prophet forecasting model, enhanced with changepoints identified from temporal trend analysis, provides reasonable short-term unemployment predictions. 
 
-Additionally, the model struggled to capture sharp spikes during the COVID-19 period, due to:
+The study reveals that while the pandemic created unprecedented job losses, the labour market showed resilience with recovery beginning within months. However, the reduced labour participation rate suggests lasting structural changes requiring continued monitoring.
 
-* Limited dataset size, especially for pre- and post-COVID periods.
-
-## View Notebook
-
-You can view the full analysis notebook on NBViewer here:  
-🔗 [Unemployment Analysis – Task 2 (NBViewer)](https://nbviewer.org/github/aminahol/OIBSIP_unemployment-rates_task_2/blob/700c1584f8fcd738a3e322088c221a3ad02646f7/Unemployment_%20Analysis%20_%20Task2.ipynb)
-
-
+The forecasting framework demonstrates how visual trend analysis can inform model design, with changepoints derived from line graph observations significantly improving prediction accuracy.
